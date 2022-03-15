@@ -208,21 +208,28 @@ public class Assignment {
 
 	private void viewAllTweets() {
 		Map<UserDetail, List<String>> viewAllTweets = assignmentServiceImpl.viewAllTweets();
-		for (Map.Entry<UserDetail, List<String>> tweets : viewAllTweets.entrySet()) {
-			String username = tweets.getKey().getUsername();
-			List<String> userTweets = tweets.getValue();
-			for (String tweet : userTweets) {
-				System.out.println(username + " : " + tweet);
+		if (!viewAllTweets.isEmpty())
+			for (Map.Entry<UserDetail, List<String>> tweets : viewAllTweets.entrySet()) {
+				String username = tweets.getKey().getUsername();
+				List<String> userTweets = tweets.getValue();
+				for (String tweet : userTweets) {
+					System.out.println(username + " : " + tweet);
+				}
 			}
-		}
+		else
+			System.out.println("No tweets yet ");
 
 	}
 
 	private void viewMyTweet(UserDetail userDetail) {
 		List<String> viewMyTweets = assignmentServiceImpl.viewMyTweets(userDetail);
 		System.out.println(" Following are my tweets :");
-		for (String myTweet : viewMyTweets)
-			System.out.println(myTweet);
+
+		if (viewMyTweets != null)
+			for (String myTweet : viewMyTweets)
+				System.out.println(myTweet);
+		else
+			System.out.println("You didn't post anything yet");
 
 	}
 
