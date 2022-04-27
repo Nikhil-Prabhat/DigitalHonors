@@ -1,0 +1,48 @@
+-- To start Zookeeper
+zookeeper-server-start.bat C:\kafka_2.12-3.1.0\config\zookeeper.properties [/windows]
+
+-- To start Kafka Server
+kafka-server-start.bat C:\kafka_2.12-3.1.0\config\server.properties
+
+-- To create Topic
+kafka-topics.bat --create --zookeeper localhost:2181 --replication-factor 1 --partitions 1 -topic TweetTopic
+kafka-topics.bat --create --topic TweetTopic --bootstrap-server localhost:9092 --replication-factor 1 --partitions 1 // for newer version
+
+-- To produce message
+kafka-console-producer.bat --broker-list localhost:9092 --topic javatechie
+
+-- To consume message
+kafka-console-consumer.bat --bootstrap-server localhost:9092 --topic TweetTopic
+
+download 7.6.2[stable version]
+-- To run elasticsearch
+elasticsearch.bat [/bin]
+** Check passowrd for elasticserach : elasticsearch-setup-passwords auto[/bin] // all the passwords will be get here
+
+-- To run Kibana [5601]
+** First uncomment the hostname and port for elasticsearch in kibana yml file [/config]
+
+kibana.bat [/bin]
+** On Kibana UI: give the credentials for elasticsearch
+
+## Write the log path same as in application.properties
+
+-- Checking index in elasticsearch
+localhost:9200/_cat/indices
+
+-- Searching indices
+localhost:9200/--index--/_serach
+
+-- Get the index from there and create index pattern in kibana
+
+-- To run logstash
+logstash.bat
+
+logstash -f logstash.conf
+
+
+
+
+
+
+
